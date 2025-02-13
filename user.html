@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Management</title>
+    <style>
+        #user{
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        #username{
+        margin-top:40px ;
+        margin-left: 550px;
+        padding: 7px;
+        }
+        #button{
+        padding: 7px;
+        background-color: #4CAF50;
+        color: white;
+        border-radius: 4px;
+        border: none;
+
+        }
+        table {
+            width: 50%;
+            border-collapse: collapse;
+            margin-top: 60px;
+            margin-left: 300px;
+        }
+        table, th, td {
+            border: 1px solid black;
+            
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+        #remove{
+            background-color: red;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 4px;
+        }
+        #remove::first-letter{
+            background-color: #4CAF50;
+        }
+        #remove:hover{
+            background-color: greenyellow;
+        }
+        #button:hover{
+            background-color:cornflowerblue;
+            color: black;
+        }
+
+    
+    </style>
+</head>
+<body>
+    <div id="user">
+        <h1>User Management</h1>
+    </div>
+    <div>
+        <input type="text" id="username" placeholder="Enter username">
+        <button id ="button" onclick="addUser()">Add User</button>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody id="userTable">
+        </tbody>
+    </table>
+
+    <script>
+        
+        function addUser() {
+            let name = document.getElementById('button');
+            name.textContent = "Add More User";
+            name.style.color = "red";
+            name.style.backgroundColor="brown";
+            const usernameInput = document.getElementById('username');
+            const username = usernameInput.value;
+            if (username) {
+                const table = document.getElementById('userTable');
+                const row = table.insertRow();
+                const cell1 = row.insertCell(0);
+                const cell2 = row.insertCell(1);
+                cell1.textContent = username;
+                cell2.innerHTML = '<button id="remove" onclick="removeUser(this)">Remove</button>';
+                usernameInput.value = '';
+            }
+        }
+        function removeUser(button) {
+            const row = button.parentNode.parentNode;
+            row.parentNode.removeChild(row);
+        }
+    </script>
+</body>
+</html>
